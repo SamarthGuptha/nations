@@ -1,0 +1,88 @@
+body{
+  background-image: url('./background.png');
+  background-size: cover;
+
+}
+.container_1{
+    margin-top: -59vw;
+    margin-left: 25%; 
+    height: 50vh;
+    width: 50vw;
+    background-image: url('./background_2.png');
+    z-index: 1;
+    /* align-items: center; */
+    /* justify-content: center; */
+    transition: all 1.5s ease;
+}
+.container_1_h{
+    color: white;
+    /* align-items: center; */
+    /* justify-content: center; */
+    margin-left: 33%;
+    margin-top: 0%; 
+}
+.dual_content{
+    flex-direction: row;
+    display: flex;
+}
+.signup{
+    width: 49%;
+    height: 100%;
+        flex-direction: column;
+    display: flex;
+}
+.login{
+    width: 49%;
+    flex-direction: column;
+    display: flex;
+}
+.line{
+    width: 0.2vw;
+    height: 39vh;
+    background-color: black;
+}
+.name_2{
+width: 20vw;
+height: 4vh;
+background-color: #d5bd7c;
+margin-left: 8%;
+}
+.thing_rom{
+    width: 10vw;
+    margin-left: 28%;
+    height: 4vh;
+    margin-top: 5%;
+    background-color: #c99812;
+}
+.thing_rom:hover{
+    background-color: #c99812;
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+.name{
+    width: 20vw;
+    height: 4vh;
+    margin-left: 8%;
+    background-color: #d5bd7c;
+}
+.game_code{
+    width: 20vw;
+    height: 4vh;
+    margin-left: 8%;
+    background-color: #d5bd7c;
+    margin-top: 5%;
+}
+.join_game{
+    width: 10vw;
+    margin-left: 28%;
+    height: 4vh;
+    margin-top: 5%;
+    background-color: #c99812;
+}
+.join_game:hover{
+    background-color: #c99812;
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
