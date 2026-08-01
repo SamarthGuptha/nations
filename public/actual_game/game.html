@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nations</title>
+    <meta name="description" content="Nations: a 2-6 player Risk-style world domination game with a roguelike roulette wheel-building twist." />
+    <meta property="og:title" content="Nations — Wheel of Conquest"/>
+    <meta property="og:description" content="Spin your wheel, build your empire, draft upgrades and conquer the map."/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Bitter:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="sky"></div>
+<div class="sun"></div>
+<div class="jungle jungle-far"></div>
+<div class="jungle jungle-near"></div>
+
+<header class="topbar">
+    <img src="../../logomain.png" class="logo">
+    <div class="topbar-right">
+        <div class="player-count panel-mini">
+            <span>Nations:</span>
+            <button class="btn btn-sm hole" id="pcMinus">–</button>
+            <strong id="pcValue"></strong>
+            <button class="btn btn-sm hole" id="pcPlus">+</button>
+            <button class="btn btn-sm" id="newGame">New Game</button>
+        </div>
+    </div>
+</header>
+
+<main class="layout">
+    <aside class="panel parchment" id="playersPanel">
+        <h2 class="panel-title">The Nations</h2>
+        <div id="playerList" class="player-list"></div>
+        <div class="divider"></div>
+        <h2 class="panel-title">Log</h2>
+        <ul id="log" class="log"></ul>
+    </aside>
+    <section class="panel parchment map-panel">
+        <div class="map-head">
+            <h2 class="panel-title" id="turnBanner">Turn 1</h2>
+            <span class="hint" id="mapHint">Spin the wheel to begin.</span>
+        </div>
+        <div id="map" class="map-grid"></div>
+        <div class="legend">
+            <span> Steel</span><span> Potato</span>
+            <span> Titanium</span><span> Uranium</span>
+            <span> City</span><span> Troops</span>
+        </div>
+    </section>
+    <aside class="panel parchment wheel-panel">
+        <h2 class="panel-title">Your Wheel</h2>
+        <div class="wheel-wrap">
+            <div class="wheel-pointer"></div>
+            <svg id="wheel" viewBox="-110 -110 220 220" class="wheel"></svg>
+        </div>
+        <button class="btn btn-lg btn-spin" id="spinBtn">SPIN</button>
+        <p class="spin-result" id="spinResult">&nbsp;</p>
+        <div class="divider"></div>
+        <h2 class="panel-title">Build <span id="buildsLeft" class="pill">2 left</span></h2>
+        <div id="buildMenu" class="build-menu"></div>
+        <button class="btn btn-block" id="attackBtn">⚔ Attack Mode</button>
+        <button class="btn btn-block btn-end" id="endTurnBtn">End Turn</button>
+    </aside>
+</main>
+
+<div class="modal-backdrop" id="draftBackdrop" hidden>
+    <div class="parchment modal" id="draftModal">
+        <h2 class="modal-title">Draft Phase</h2>
+        <p class="modal-sub" id="draftSub">Choose one upgrade, it permanently alters your wheel.</p>
+        <div class="cards" id="draftCards"></div>
+    </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

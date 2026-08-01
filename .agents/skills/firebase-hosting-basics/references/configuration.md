@@ -42,7 +42,7 @@ Serve the same content for multiple URLs, useful for SPAs or Dynamic Content.
 "rewrites": [
   {
     "source": "**",
-    "destination": "/index.html"
+    "destination": "/game.html"
   },
   {
     "source": "/api/**",
@@ -105,7 +105,7 @@ Controls trailing slashes in static content URLs.
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/game.html"
       }
     ],
     "cleanUrls": true,

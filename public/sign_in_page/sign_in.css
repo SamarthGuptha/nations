@@ -1,89 +1,138 @@
-body{
-  background-image: url('./background.png');
-  background-size: cover;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pixelify Sans', sans-serif;
+}
 
+body {
+    background-color: #1a1a24;
+    background-image: url('./background.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
-.container_1{
-    margin-top: -59vw;
-    margin-left: 25%; 
-    height: 50vh;
-    width: 50vw;
-    background-image: url('./background_2.png');
+
+.container_1 {
+    width: 850px;
+    max-width: 95%;
+    padding: 40px 50px;
+    background-color: rgba(26, 32, 44, 0.95);
+    
+    
+    border: 4px solid #ff8c42;
+    border-radius: 0;
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.8);
+    
     z-index: 1;
-    /* align-items: center; */
-    /* justify-content: center; */
-    transition: all 1.5s ease;
-    margin-right: 25%;
-}
-.container_1_h{
-    color: white;
-    /* align-items: center; */
-    /* justify-content: center; */
-    margin-left: 33%;
-    margin-top: 0%; 
-}
-.dual_content{
-    flex-direction: row;
+    margin-top: 0 !important;
+    transition: margin-left 0.8s ease-in-out;
     display: flex;
-}
-.signup{
-    width: 49%;
-    height: 100%;
-        flex-direction: column;
-    display: flex;
-}
-.login{
-    width: 49%;
     flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.container_1_h {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.8); 
+}
+
+.dual_content {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
 }
-.line{
-    width: 0.2vw;
-    height: 39vh;
-    background-color: black;
+
+.signup, .login {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
 }
-.name_2{
-width: 20vw;
-height: 4vh;
-background-color: #d5bd7c;
-margin-left: 8%;
+
+.signup h2, .login h2 {
+    color: #ff8c42; 
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
-.thing_rom{
-    width: 10vw;
-    margin-left: 28%;
-    height: 4vh;
-    margin-top: 5%;
-    background-color: #c99812;
+
+.line {
+    width: 4px;
+    background: #ff8c42; 
+    border-radius: 0;
 }
-.thing_rom:hover{
-    background-color: #c99812;
-    transform: scale(1.1);
-    transition: all 0.5s ease;
+
+.input-field {
+    width: 90%;
+    padding: 14px 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    
+    
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    
+    color: #ffffff;
+    font-size: 1.05rem;
+    outline: none;
+    transition: all 0.1s ease;
+}
+
+.input-field::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.input-field:focus {
+    border-color: #ff8c42;
+    background-color: rgba(255, 140, 66, 0.05);
+    box-shadow: 4px 4px 0 rgba(255, 140, 66, 0.5); 
+}
+
+.thing_rom, .join_game {
+    width: 90%;
+    padding: 14px 20px;
+    background-color: #ff8c42;
+    color: #1a1a24;
+    
+    border: 3px solid #ffaa70;
+    border-radius: 0;
+    
+    font-size: 1.2rem;
+    font-weight: 700;
     cursor: pointer;
+    transition: all 0.1s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.name{
-    width: 20vw;
-    height: 4vh;
-    margin-left: 8%;
-    background-color: #d5bd7c;
+
+.thing_rom:hover, .join_game:hover {
+    background-color: #ffaa70;
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 rgba(255, 140, 66, 0.6);
 }
-.game_code{
-    width: 20vw;
-    height: 4vh;
-    margin-left: 8%;
-    background-color: #d5bd7c;
-    margin-top: 5%;
-}
-.join_game{
-    width: 10vw;
-    margin-left: 28%;
-    height: 4vh;
-    margin-top: 5%;
-    background-color: #c99812;
-}
-.join_game:hover{
-    background-color: #c99812;
-    transform: scale(1.1);
-    transition: all 0.5s ease;
-    cursor: pointer;
+
+.thing_rom:active, .join_game:active {
+    transform: translate(2px, 2px); 
+    box-shadow: 0px 0px 0 rgba(255, 140, 66, 0.4);
 }

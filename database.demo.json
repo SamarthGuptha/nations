@@ -1,0 +1,17 @@
+{
+  "games": {
+    "5756": {
+      "game_running": false,
+      "owner": { "name": "Divyansh230", "uid": "demo-owner" },
+      "maxPlayers": 6,
+      "players": [
+        { "name": "Divyansh230", "uid": "demo-owner" },
+        { "name": "Johny", "uid": "demo-johny" },
+        { "name": "Prompter580", "uid": "demo-prompter" },
+        { "name": "Vidit877", "uid": "demo-vidit" },
+        { "name": "yooo579", "uid": "demo-yooo" },
+        { "name": "owhaiadfksdjsbdfasdhkdfbsdjhkfashkldfhb271", "uid": "demo-last" }
+      ]
+    }
+  }
+}

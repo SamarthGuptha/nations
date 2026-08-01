@@ -1,0 +1,40 @@
+[
+  {
+    "id": "p0",
+    "name": "Crimson",
+    "alive": true,
+    "steel": 4,
+    "potato": 4,
+    "titanium": 1,
+    "uranium": 0,
+    "troops": 6,
+    "steel_farm": 1,
+    "potato_farm": 0,
+    "titanium_farm": 0,
+    "uranium_mine": 0,
+    "city": 0,
+    "wheel": [
+      { "id": "s0", "type": "steel", "size": 1 },
+      { "id": "s1", "type": "potato", "size": 1 }
+    ]
+  },
+  {
+    "id": "p1",
+    "name": "Azure",
+    "alive": true,
+    "steel": 4,
+    "potato": 4,
+    "titanium": 1,
+    "uranium": 0,
+    "troops": 6,
+    "steel_farm": 0,
+    "potato_farm": 1,
+    "titanium_farm": 0,
+    "uranium_mine": 0,
+    "city": 0,
+    "wheel": [
+      { "id": "s0", "type": "steel", "size": 1 },
+      { "id": "s1", "type": "potato", "size": 1 }
+    ]
+  }
+]

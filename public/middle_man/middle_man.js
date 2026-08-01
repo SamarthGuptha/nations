@@ -1,46 +1,78 @@
-import { getDatabase, ref, get , update, push, set} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
-import { getFirestore, doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signOut, updateEmail, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+import { auth, ensureSignedIn, getGame, saveGameState, watchGame } from "../js/firebase.js";
+import { GameState } from "../actual_game/js/gameState.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBh88CQZqyMwOdxV3AfFjUAetAUh_i66LY",
-  authDomain: "nations-58f78.firebaseapp.com",
-  databaseURL: "https://nations-58f78-default-rtdb.firebaseio.com",
-  projectId: "nations-58f78",
-  storageBucket: "nations-58f78.firebasestorage.app",
-  messagingSenderId: "721143536543",
-  appId: "1:721143536543:web:57b24b41d459bb29e9fbaa",
-  measurementId: "G-L7P40BGYHG"
-};
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const rtdb = getDatabase(app); 
-const container_1 = document.querySelectorAll(".container_1");
-setTimeout(() => {
-container_1[0].style.marginTop = "13vw";
-}, 500);
-const container_1_h = document.querySelector(".container_1_h");
-const urlParams = new URLSearchParams(window.location.search);
-const game_code = urlParams.get('game_code');
-const name = urlParams.get('name');
-const container_2_h = document.querySelector(".container_2_h");
-container_1_h.innerHTML = "Welcome " + name.slice(0, -3) + " to Nations \n" +  "\n ! Waiting for other players to join... \n" +  "\n" 
-container_2_h.innerHTML =   "Game Code: " + game_code; 
+const params = new URLSearchParams(location.search);
+const gameCode = params.get("game_code");
+const heading = document.querySelector(".container_1_h");
+const codeLabel = document.querySelector(".container_2_h");
+const playerList = document.querySelector(".strump");
+const startButton = document.querySelector(".startGameBtn");
+const leaveButton = document.querySelector(".leaveBtn");
+let latestRoom = null;
 
-
-const strump = document.querySelector(".strump");
-
-// container_h_3.innerHTML =   "Game Code: " + game_code; 
-
-
-const reff = ref(rtdb, `games/${game_code}`);
-let snapshot = await get(reff);
-if (snapshot.exists()) {
-
-    for (let i = 0; i < snapshot.val().players.length; i++) {
-        const player = snapshot.val().players[i];
-        strump.innerHTML += `<h1 class="spoof">` + "Player: " +  player.name.slice(0, -3) + `</h1>`;
-    }
+if (!gameCode) {
+  heading.textContent = "No game code was provided.";
+  startButton.hidden = true;
+} else {
+  codeLabel.textContent = `Game Code: ${gameCode}`;
+  await ensureSignedIn();
+  watchGame(gameCode, onRoomChanged);
 }
+
+function onRoomChanged(room) {
+  latestRoom = room;
+  if (!room) {
+    heading.textContent = "This game no longer exists.";
+    startButton.hidden = true;
+    return;
+  }
+  if (room.game_running && room.state) {
+    location.replace(`/actual_game/game.html?game_code=${encodeURIComponent(gameCode)}`);
+    return;
+  }
+
+  const players = Array.isArray(room.players) ? room.players.filter(Boolean) : [];
+  const minimumMet = players.length >= 2;
+  const isOwner = room.owner?.uid === auth.currentUser?.uid;
+  heading.textContent = minimumMet
+    ? "Players are ready. Waiting for the host to start the game."
+    : "Waiting for at least one more player to join…";
+  playerList.replaceChildren(...players.map((player) => playerRow(player.name || "Player")));
+  startButton.hidden = !isOwner;
+  startButton.disabled = !minimumMet;
+  startButton.textContent = minimumMet ? "START GAME!" : `WAITING (${players.length}/2)`;
+}
+
+function playerRow(name) {
+  const row = document.createElement("div");
+  row.className = "spoof";
+  const label = document.createElement("span");
+  label.className = "player-name";
+  label.textContent = `Player: ${name}`;
+  row.append(label);
+  return row;
+}
+
+startButton.addEventListener("click", async () => {
+  const room = await getGame(gameCode);
+  const players = Array.isArray(room?.players) ? room.players.filter(Boolean) : [];
+  if (!room || room.owner?.uid !== auth.currentUser?.uid || players.length < 2) return;
+  const names = players.map((player) => player.name || "Player");
+  const state = new GameState(names.length, names).snapshot();
+  state.players.forEach((player, index) => { player.uid = players[index].uid; });
+  startButton.disabled = true;
+  startButton.textContent = "STARTING…";
+  await saveGameState(gameCode, state);
+});
+
+leaveButton.addEventListener("click", async () => {
+  const room = await getGame(gameCode);
+  if (room && !room.game_running) {
+    const players = (room.players || []).filter((player) => player?.uid !== auth.currentUser?.uid);
+    const owner = players[0] || null;
+    const { database } = await import("../js/firebase.js");
+    const { ref, update } = await import("https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js");
+    await update(ref(database, `games/${gameCode}`), { players, owner });
+  }
+  location.assign("/sign_in_page/sign_in.html");
+});

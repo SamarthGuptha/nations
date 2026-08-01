@@ -1,0 +1,25 @@
+[
+  {},
+  {},
+  {
+    "player": "p0",
+    "troops": 2,
+    "assets": ["steel_farm"]
+  },
+  {},
+  {},
+  {},
+  {
+    "player": "p1",
+    "troops": 5,
+    "assets": ["potato_farm"]
+  },
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {}
+]
