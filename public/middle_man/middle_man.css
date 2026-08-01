@@ -1,0 +1,32 @@
+body{
+  background-image: url('./background.png');
+  background-size: cover;
+}
+.container_1{
+    margin-top: -59vw;
+    margin-left: 25%; 
+    height: 50vh;
+    width: 50vw;
+    background-image: url('./background_2.png');
+    z-index: 1;
+    /* align-items: center; */
+    /* justify-content: center; */
+    transition: all 1.5s ease;
+    margin-right: 25%;
+}
+.container_1_h{
+    text-align: center;
+    font-size: 2vw;
+    color: white;
+    margin-top: 10%;
+}
+.spoof{
+    background-color: white;
+    height: 7vh;
+    text-align: center;
+    border-radius: 10vw;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin-left: 5%;
+}
