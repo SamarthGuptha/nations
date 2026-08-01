@@ -64,26 +64,39 @@ body {
 <rect x='96' y='70' width='8' height='44'/><rect x='196' y='60' width='9' height='54'/>\
 </g></svg>");
 }
+
 .topbar {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; padding: 14px 20px 6px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    gap: 15px; 
+    padding: 14px 20px 0px; 
+    height: 70px; 
 }
+
+
 .logo {
-    font-family: "IM Fell English SC", serif;
-    margin: 0; font-size: clamp(28px, 4vw, 46px);
-    letter-spacing: 4px; color: #fff3cf;
-    text-shadow: 3px 3px 0 var(--brown), 6px 6px 0 rgba(38, 25, 15, 0.35);
+    margin-left: -8px;
+    height: 150px; /* Adjust this number up or down to get the perfect size! */
+    width: auto;  /* This keeps the image from stretching weirdly */
+    display: block;
+}
+
+
+.layout {
+    display: grid; 
+    gap: 16px; 
+    padding: 0px 20px 28px; 
+    margin-top: 10px;
+    grid-template-columns: 260px minmax(0, 1fr) 300px;
+    align-items: start;
 }
 .panel-mini {
     display: flex; align-items: center; gap: 8px;
     background: var(--parchment); border: 3px solid var(--ink);
     box-shadow: var(--shadow-sm); padding: 6px 10px;
 }
-.layout {
-    display: grid; gap: 16px; padding: 10px 20px 28px;
-    grid-template-columns: 260px minmax(0, 1fr) 300px;
-    align-items: start;
-}
+
 @media (max-width: 1100px) {
     .layout { grid-template-columns: 1fr; }
 }
