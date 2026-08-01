@@ -6,7 +6,7 @@ export const PLAYER_COLORS = [
     {name: "Violet", color: "#7a4a9c"},
     {name: "Slate", color: "#5b6470"},
 ];
-export const NATION_NAMES = ["Redwood", "Blue Hollow", "Violet Vine","Green Grass","White Walls", "Grey Ground"];
+export const NATION_NAMES = ["Redwood", "Blue Hollow", "Green Grass","Yellow Mellow","Violet Vines", "Grey Ground"];
 export const RESOURCES = {
     steel: {label: "Steel", icon: "⛏"},
     potato: {label: "Potato", icon: "🥔"},
@@ -43,9 +43,9 @@ export function makeStartingWheel() {
 }
 export const MAP_COLS = 5;
 export const TERRITORY_NAMES = [
-    "Name 1","Name 1","Name 1","Name 1","Name 1",
-    "Name 1","Name 1","Name 1","Name 1","Name 1",
-    "Name 1","Name 1","Name 1","Name 1","Name 1",
+    "Zook's Zawn","Daamin's Desert","Annabel's Archipelago","Kartikey's Karst","Manitej's Mountain",
+    "Adi's Alpine Tundra","RenRan's Ravine","Manan's Marsh","Aly's Arroyo","Aaron's Atoll",
+    "Jason's Jungle","Darlene's Delta","Soham's Savannah","Divyansh's Dune","Vidit's Valley"
 ];
 export function neighborsOf(index) {
     const cols = MAP_COLS;
