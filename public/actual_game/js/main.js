@@ -17,8 +17,6 @@ if (!gameCode) {
   if (!room) {
     message.textContent = "This game code does not exist.";
   } else if (!room.state) {
-    // The waiting room owns starting games. Do not bypass it by opening the
-    // game URL directly.
     location.replace(`/middle_man/middle_man.html?game_code=${encodeURIComponent(gameCode)}`);
   } else {
     start(room.state, room.players || []);
@@ -35,7 +33,7 @@ function start(state, playerRecords) {
     game = new GameState(names.length, names);
     game.applyState(state);
     ui = new UIController(game);
-    connectPersistence();
+    connectionalive();
   } else {
     suppressSave = true;
     game.applyState(state);
@@ -46,7 +44,7 @@ function start(state, playerRecords) {
   ui.render();
 }
 
-function connectPersistence() {
+function connectionalive() {
   const events = ["playerDidSpin", "playerDidBuild", "playerDidAttack", "playerDidDraft", "playerDidEndTurn", "turnDidChange", "gameDidEnd", "gameDidReset"];
   events.forEach((event) => document.addEventListener(event, async () => {
     if (!suppressSave && game) await saveGameState(gameCode, game.snapshot());

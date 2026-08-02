@@ -184,8 +184,7 @@ export class GameState {
         p.structuresSinceDraft += 1;
         this.buildsRemaining -= 1;
         this.addLog(`${p.nation} built ${BUILDABLES[key].label}.`);
-        // Enter draft before notifying Firebase listeners. Otherwise the
-        // build event saves the previous phase and immediately closes the UI.
+ the UI.
         if (p.structuresSinceDraft >= 3) this.openDraft();
         emit("playerDidBuild", { playerId: p.id, territoryIndex, buildable: key, state: this.snapshot() });
         return { ok: true };

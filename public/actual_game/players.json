@@ -18,7 +18,7 @@
       { "id": "s1", "type": "potato", "size": 1 }
     ]
   },
-  {
+  
     "id": "p1",
     "name": "Azure",
     "alive": true,

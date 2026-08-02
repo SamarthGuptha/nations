@@ -1,4 +1,4 @@
-import { auth, ensureSignedIn, getGame, saveGameState, watchGame } from "../js/firebase.js";
+import { auth, authentication, getGame, saveGameState, watchGame } from "../js/firebase.js";
 import { GameState } from "../actual_game/js/gameState.js";
 
 const params = new URLSearchParams(location.search);
@@ -15,7 +15,7 @@ if (!gameCode) {
   startButton.hidden = true;
 } else {
   codeLabel.textContent = `Game Code: ${gameCode}`;
-  await ensureSignedIn();
+  await authentication();
   watchGame(gameCode, onRoomChanged);
 }
 
@@ -32,15 +32,14 @@ function onRoomChanged(room) {
   }
 
   const players = Array.isArray(room.players) ? room.players.filter(Boolean) : [];
-  const minimumMet = players.length >= 2;
-  const isOwner = room.owner?.uid === auth.currentUser?.uid;
-  heading.textContent = minimumMet
-    ? "Players are ready. Waiting for the host to start the game."
-    : "Waiting for at least one more player to join…";
+  const isOwner =
+  heading.textContent = players.length >= 2
+    ? " Waiting for the HOSTY to start the game."
+    : "Waiting for more players to join…";
   playerList.replaceChildren(...players.map((player) => playerRow(player.name || "Player")));
-  startButton.hidden = !isOwner;
-  startButton.disabled = !minimumMet;
-  startButton.textContent = minimumMet ? "START GAME!" : `WAITING (${players.length}/2)`;
+  startButton.hidden = !(room.owner?.uid === auth.currentUser?.uid);
+  startButton.disabled = !(players.length >= 2);
+  startButton.textContent = players.length >= 2 ? "START GAME!" : `WAITING (${players.length}/2)`;
 }
 
 function playerRow(name) {

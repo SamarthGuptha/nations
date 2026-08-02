@@ -181,6 +181,7 @@ body {
 .terr .ttroops {
     position: absolute; right: 4px; top: 4px; font-size: 12px; font-weight: 700;
     background: var(--parchment); border: 2px solid var(--ink); padding: 0 4px;
+    color: black;
 }
 .terr .tassets { position: absolute; left: 4px; bottom: 3px; font-size: 13px; letter-spacing: 1px; }
 .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 12px; border-top: 2px solid var(--ink); padding-top: 8px; }
@@ -231,3 +232,19 @@ body {
 .card h3 { font-family: "IM Fell English SC", serif; margin: 6px 0; font-size: 19px; }
 .card p { font-size: 12.5px; margin: 0 0 10px; color: var(--ink-soft); }
 .card .tag { font-size: 11px; background: var(--mustard); border: 2px solid var(--ink); padding: 1px 6px; }
+
+
+::-webkit-scrollbar-track {
+    background: var(--parchment);
+}::-webkit-scrollbar-thumb {
+    background: var(--ink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ink-soft);
+}
+
+html {
+    scrollbar-width: 7px;
+    scrollbar-color: #b99a63 var(--parchment);
+}
